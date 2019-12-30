@@ -1,0 +1,12 @@
+C://
+|
+Pachaved data/
+	|
+	Patient/
+	       |
+	  1_sukrut/        
+	       |	                     |
+	  1_sukrut_case.txt	11/11/2019_1.pdf		
+
+
+
