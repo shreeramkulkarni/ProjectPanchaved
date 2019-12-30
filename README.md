@@ -1,2 +1,3 @@
-# Panchved-webv1.0
-Managing patients using a webapp
+# ProjectPanchaved
+Panchaved Web Application
+
