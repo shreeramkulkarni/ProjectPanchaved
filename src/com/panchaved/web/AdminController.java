@@ -190,42 +190,6 @@ public class AdminController {
 		return "newDoctor.jsp";
 	}
 
-	@RequestMapping(value = "/bill" , method = RequestMethod.GET)
-	public String showBill( Model model ) throws IOException {
-		Map<String, String> map = bService.readCPS();
-		model.addAttribute("CPSMap", map);
-		model.addAttribute("patientBill", new PatientBill());
-		return "billReceipt.jsp";
-	}
-	
-	@RequestMapping(value = "/bill" , method = RequestMethod.POST)
-	public String saveBill( Model model, @ModelAttribute("patientBill") PatientBill patientBill) {
-		System.out.println(patientBill);
-		System.out.println("Showing bill!");
-		
-		return "billReceipt.jsp";
-	}
-	
-	@RequestMapping(value = "/setCost" , method = RequestMethod.GET)
-	public String showCPS( HttpServletRequest req,Model model, HttpSession session ) throws IOException {
-		
-		return "costPerSitting.jsp";
-	}
-	
-	
-	@RequestMapping(value = "/setCost" , method = RequestMethod.POST) //
-	public String saveCPS(Model model, @RequestBody Map<String,String> myrequestMap ) throws IOException { //
-		System.out.println(myrequestMap);
-		bService.saveCps(myrequestMap);
-		return "costPerSitting.jsp"; 
-	}
-	
-	@RequestMapping(value = "/getCPSMap")
-	public @ResponseBody Map<String, String> getCPSMap(Model model) throws IOException {
-		System.out.println("showing map");
-		return bService.readCPS();
-	}
-
 	@RequestMapping(value = "/getids" , method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Integer> loadIds()
 	{	

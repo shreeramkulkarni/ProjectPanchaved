@@ -1,6 +1,6 @@
 var index =0
 $(function(){
-	
+	var id = $('#patid').val();
 	var date = new Date(Date.now()).toLocaleString();
 	$("input[id=date]").val(date);
 	$("input[type=number]").keyup(function(){
@@ -9,7 +9,9 @@ $(function(){
 	
 	$("#print").click(function() {
 		$("#sel1").hide();
+		$(this).hide();
 		window.print();
+		
 	});
 });
 function addNewRow() {

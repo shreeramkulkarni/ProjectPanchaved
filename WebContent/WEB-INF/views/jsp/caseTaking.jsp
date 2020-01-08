@@ -67,7 +67,7 @@
 							id="sidebarToggleTop" type="button">
 							<i class="fas fa-bars"></i>
 						</button>
-						<h3 class="text-dark mb-0">Welcome - ${user}</h3>
+						<h3 class="text-dark mb-0">Welcome - ${user} </h3>
 						<%-- <b> ${user} </b> --%>
 					</div>
 				</nav>
@@ -87,30 +87,36 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">CURRENT</h4>                                          
-                                                    <div class="form-group"><label>Patient ID:</label><form:input class="form-control" type="text" id="field1" path="patientID" value="${patID}" /></div>
-                                                    <div class="form-group"><label>C/O:</label><form:input class="form-control" type="text" id="field2" path="co" /></div>
-                                                    <div class="form-group"><label>H/O:</label><form:input class="form-control" type="text" id="field3" path="ho" /></div>
-                                                    <div class="form-group"><label>Physical Findings:</label><form:input class="form-control" type="text" id="field4" path="physicalFindings" /></div>
-                                                    <div class="form-group"><label>O/E:</label><form:input class="form-control" type="text" id="field5" path="oe" /></div>
-                                                    <div class="form-group"><label>CNS-RS-NAD P/A:</label><form:input class="form-control" type="text" id="field6" path="cns_rs_nad_pa" /></div>
-                                                    <div class="form-group"><label>INVESTIGATIONS:</label><form:input class="form-control" type="text" id="field7" path="investigations" /></div>
+                                                    <div class="form-group"><label>Patient ID:</label><form:input class="form-control" type="text" id="field1" path="patientID" value="${patID}" rows="1"  cols="20" readonly="true"/></div>
+                                                    <div class="form-group"><label>C/O:</label><form:textarea class="form-control" type="text" id="field2" path="co" rows="3"  cols="20"/></div>
+                                                    <div class="form-group"><label>H/O:</label><form:textarea class="form-control" type="text" id="field3" path="ho" rows="3"  cols="20"/></div>
+                                                    <div class="form-group"><label>Physical Findings:</label><form:textarea class="form-control" type="text" id="field4" path="physicalFindings" rows="3"  cols="20"/></div>
+                                                    <div class="form-group"><label>O/E:</label><form:textarea class="form-control" type="text" id="field5" path="oe" rows="3"  cols="20"/></div>
+                                                    <div class="form-group"><label>CNS-RS</label><form:textarea class="form-control" type="text" id="field6" path="cns_rs" rows="3"  cols="20"/></div>
+                                                    <div class="form-group"><label>P/A:</label><form:textarea class="form-control" type="text" id="field7" path="pa" rows="3"  cols="20"/></div>
+                                                    <div class="form-group"><label>INVESTIGATIONS:</label><form:textarea class="form-control" type="text" id="field8" path="investigations" rows="3"  cols="20"/></div>
                                                 
                                                 <div class="card"></div>
                                             </div>
                                         </div>
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="card-title">HISTORY</h4><textarea id = "history" rows="25" cols="40"></textarea></div>
+                                                <h4 class="card-title">HISTORY</h4><textarea id = "history" rows="25" cols="40" readonly></textarea></div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="container-fluid">
+                                <button class="btn btn-primary mt-3" id="genReport" type="button">Generate Report</button>
+                            	</div>
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">REPORT:</h4>
-                                <textarea id="report" style="width: 891px;height: 215px;"></textarea>
+                                <textarea id="report" style="width: 891px;height: 215px;" readonly></textarea>
                             </div>
-                            <button class="btn btn-primary" id="genReport" type="button">Generate Report</button>
-                            <button class="btn btn-primary mt-4" id="save" type="submit">Save</button>
+                            <div class="row">
+                            	<div class="col-md-12 text-center"><button class="btn btn-primary btn-block" id="save" type="submit">Save/Proceed</button></div>
+                            </div>
+                            
                          </div>
                     </div>
                 </div>

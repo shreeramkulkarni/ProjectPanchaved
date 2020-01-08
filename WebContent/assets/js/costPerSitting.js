@@ -16,7 +16,7 @@ $(function(){
 
 function loadPage() {
 	$.ajax({
-		url : "/SpringDBMS/admin/getCPSMap",
+		url : "/SpringDBMS/doctor/getCPSMap",
 		success : function(data) {
 			for (var name in data) {
 				let cost = data[name];
@@ -44,7 +44,7 @@ function save(){
 
 	$.ajax({
 		type:"POST",
-		url:"/SpringDBMS/admin/setCost",
+		url:"/SpringDBMS/doctor/setCost",
 		contentType: "application/json; charset=utf-8",
 		data: jsonString, //Stringified Json Object
 		async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation

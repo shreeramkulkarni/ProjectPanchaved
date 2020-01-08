@@ -34,7 +34,7 @@
             <form:form class="form-signin" method="post" modelAttribute="log">
               <div class="form-label-group">
                 <label for="inputUserame"><strong>ID</strong></label>
-                <form:input value type="number" path="userID" id="inputID" name="id" class="form-control" placeholder="Mobile Number" required="true"/>
+                <form:input type="number" path="userID" id="inputID" name="id" class="form-control" placeholder="Mobile Number" required="true"/>
               </div>
 				<div id = "someid">
               <div class="form-label-group">
@@ -91,17 +91,19 @@
   <script src="<c:url value="/assets/js/bs-charts.js"/>"></script>
   <script src="<c:url value="/assets/js/theme.js"/>"></script>
   <script src="<c:url value="/assets/js/jquery.easing.js"/>"></script>
-  <script src="<c:url value="/assets/js/search.js"/>"></script>
 	<script type="text/javascript">
 	$(function(){
 		$("#reg").prop("disabled",true);
 		$('#inputPassword, #inputConfirmPassword').on('keyup', function () {
-			  if ($('#inputPassword').val() == $('#inputConfirmPassword').val()) {
+			  if ($('#inputPassword').val() === $('#inputConfirmPassword').val()) 
+			  {  
+			    	$('#message').html('Matching').css('color', 'green');
+			    	$("#reg").prop("disabled",false);
+			  } else {
+				  $('#message').html('Not Matching').css('color', 'red');
+				    $("#reg").prop("disabled",true);
+			  }
 				  
-			    $('#message').html('Matching').css('color', 'green');
-			  } else 
-			    
-			    $("#reg").prop("disabled",true);
 			});
 		
 		
@@ -114,8 +116,8 @@
 					if(data === 'null')
 						{
 							$("#someid").show();
-							$('#reg').prop('disabled',false)
-							$('#checkDoc').prop('disabled',true)
+							$('#reg').prop('disabled',false);
+							$('#checkDoc').prop('disabled',true);
 						}
 					else
 						$('#registered').text(data);
