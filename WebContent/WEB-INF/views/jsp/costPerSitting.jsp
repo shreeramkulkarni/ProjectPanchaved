@@ -30,13 +30,13 @@
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/SpringDBMS/admin">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/SpringDBMS/doctor">
                     <div class="sidebar-brand-icon rotate-n-15"></div>
                     <div class="sidebar-brand-text mx-3"><span>Panchaved</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a href="/SpringDBMS/admin/bill"><button type = "button" class="btn btn-secondary" >Bill </button></a></li>
+                    <li class="nav-item" role="presentation"><a href="/SpringDBMS/doctor/bill"><button type = "button" class="btn btn-secondary" >Bill </button></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"></div>
             </div>
@@ -49,7 +49,7 @@
                     <div class="card shadow">
                         <div class="card-body">
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                               <form  action="/SpringDBMS/admin/setCost" method="POST"  >
+                               <form  action="/SpringDBMS/doctor/setCost" method="POST"  >
                                <table class="table dataTable my-0" id="dataTable">
                                     <thead>
                                         <tr>

@@ -16,7 +16,7 @@ public class DbConnect {
     {
         try 
         {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println(user+" "+password);  
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/panchaved_data",user, password);  

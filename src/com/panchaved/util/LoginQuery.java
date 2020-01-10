@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 public class LoginQuery {
 
 	static Statement stm;
-	static  PreparedStatement pstm=null;
+	static  PreparedStatement pstm;
 	private static Connection con = DbConnect.Connect();
 	static ResultSet rs;
 
@@ -18,7 +18,7 @@ public class LoginQuery {
 	public static boolean selectQueryLogin(long userID,String password,String handlerType) {
 
 		try {
-			String sql ="select * from login where userID=? and password=? and handlerType=?";
+			String sql = "select * from login where userID=? and password=? and handlerType=?";
 			pstm = con.prepareStatement(sql);
 			pstm.setLong(1, userID);
 			pstm.setString(2, password);

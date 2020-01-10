@@ -1,7 +1,5 @@
 package com.panchaved.web;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.panchaved.enitity.Login;
 import com.panchaved.service.DoctorService;
 import com.panchaved.service.LoginService;
-import com.panchaved.service.PatientService;
-import com.panchaved.util.AppSession;
 import com.panchaved.util.ForgotPasswordQuery;
 import com.panchaved.util.LoginQuery;
 
@@ -40,7 +36,9 @@ public class LoginController {
 	}
 	@RequestMapping(method=RequestMethod.POST)
 	public String login(HttpServletRequest req,@RequestParam("userID") long userID,@RequestParam("password")String password,@RequestParam("radiob")String radio , Model model) {
-		
+		System.out.println(radio);
+		System.out.println(userID);
+		System.out.println(password);
 		if(LoginQuery.selectQueryLogin(userID,password,radio)) {
 			
 			HttpSession session = req.getSession();
@@ -49,7 +47,6 @@ public class LoginController {
 			model.addAttribute("userID", userID);
 			System.out.println("ok!");
 			return "redirect:/"+radio;
-			
 			
 		}else {
 			model.addAttribute("fail_msg", "INVALID CREDENTIALS / WRONG HANDLER TYPE");

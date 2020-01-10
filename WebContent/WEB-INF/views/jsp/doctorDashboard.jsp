@@ -86,7 +86,7 @@
 					</div>
 					
 					<div id="sForm" class="row">
-						<form:form action="/SpringDBMS/doctor/patient/update/casetaking" method="post" modelAttribute="patient">
+						<form:form action="/SpringDBMS/doctor/patient/casetaking" method="post" modelAttribute="patient">
                     <div class="container-fluid">
                         <h3 class="text-dark mb-4">Update Patient Profile</h3>
                         <div class="row mb-3">

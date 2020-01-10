@@ -42,10 +42,12 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-3">
-                                    <h4 class="text-dark mb-4" style="text-align:center"><strong>Panchaved Login<strong></h4>
+                                    <h4 class="text-dark mb-4" style="text-align:center"><strong>Panchaved Login</strong></h4>
+                                   <form class="user"  method="post" id = "loginform">    
                                     <div class="table-responsive">
-                                    <form class="user"  method="post" id = "loginform">
-                                        <table class="table" style="text-align:center">
+                              
+ 
+    	<table class="table" style="text-align:center">
                                             <thead>
                                                 <tr>
                                                     <th>
@@ -54,7 +56,7 @@
                                                     <th>
                                                         <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3" name="radiob" value="doctor" ><label class="form-check-label" for="formCheck-3">Doctor</label></div>
                                                     </th>
-                                                                                                    </tr>
+												</tr>
                                             </thead>
                                             <tbody>
                                                 <tr></tr>
@@ -62,8 +64,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="text-center"></div>
-                                    
                                         <div class="form-group"><input class="form-control form-control-user" type="tel" id="InputEmail" aria-describedby="emailHelp" placeholder="UserID" name="userID"></div>
                                         <div class="form-group"><input class="form-control form-control-user" type="password" id="InputPassword" placeholder="Password" name="password"></div>
                                         <div class="form-group">
@@ -72,7 +72,8 @@
                                             </div>
                                         </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Login</button>
                                         <hr>
-                                    </form>
+    </form>
+                                    
                                     <div class="text-center"><a class="small" href="/SpringDBMS/forgotPassword">Forgot Password?</a></div>
                                     <div class="text-center"><a class="small" href="/SpringDBMS/register">Register</a></div>
                                 </div>
@@ -81,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
+           
             <div class="col"></div>
         </div>
         <div class="row justify-content-center">
@@ -95,7 +96,7 @@
     <script src="<c:url value="assets/js/bs-charts.js"/>"></script>
 	<script src="<c:url value="assets/js/theme.js"/>"></script>
     <script src="<c:url value="assets/js/jquery.easing.js"/>"></script>
-    <script src="<c:url value="assets/js/search.js"/>"></script>
+    
     <script type="text/javascript">  
     $(document).ready(function(){
     	//global vars
@@ -123,5 +124,5 @@
     	});
     	});
     </script>
-
+</body>
 </html>

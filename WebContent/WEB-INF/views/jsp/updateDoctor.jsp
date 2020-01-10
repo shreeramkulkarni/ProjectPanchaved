@@ -178,7 +178,7 @@
         <script src="<c:url value="/assets/js/chart.min.js"/>"></script>
         <script src="<c:url value="/assets/js/bs-charts.js"/>"></script>
         <script src="<c:url value="/assets/js/theme.js"/>"></script>
-        <script src="<c:url value="assets/js/jquery.easing.js"/>"></script>
+        <script src="<c:url value="/assets/js/jquery.easing.js"/>"></script>
         <script src="<c:url value="/assets/js/search.js"/>"></script>
 </body>
 
