@@ -1,4 +1,4 @@
-package com.panchaved.util;
+package com.panchaved.entity;
 
 import java.io.Serializable;
 

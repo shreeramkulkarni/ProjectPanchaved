@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpServerErrorException;
 
-import com.panchaved.enitity.Doctor;
-import com.panchaved.enitity.Patient;
-import com.panchaved.enitity.PatientBill;
+import com.panchaved.entity.Doctor;
+import com.panchaved.entity.Patient;
+import com.panchaved.entity.PatientBill;
 import com.panchaved.service.BillService;
 import com.panchaved.service.DoctorService;
 import com.panchaved.service.PatientService;
 import com.panchaved.util.AppSession;
 import com.panchaved.util.CaseTaking;
-import com.panchaved.util.Prescriptor;
+import com.panchaved.entity.Prescriptor;
 
 @Controller
 @RequestMapping("/doctor")

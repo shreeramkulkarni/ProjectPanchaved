@@ -1,9 +1,6 @@
-package com.panchaved.enitity;
+package com.panchaved.entity;
 
 import java.sql.Date;
-
-import org.springframework.stereotype.Component;
-
 
 public class Patient {
 	private String patientName;

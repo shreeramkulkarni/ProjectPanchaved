@@ -35,9 +35,23 @@
                     <div class="sidebar-brand-text mx-3"><span>Panchaved</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
-                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+               <!--  <ul class="nav navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item" role="presentation"><a href="/SpringDBMS/doctor/bill"><button type = "button" class="btn btn-secondary" >Bill </button></a></li>
-                </ul>
+                </ul> -->
+               <ul class="nav navbar-nav text-light" id="accordionSidebar">
+					<li class="nav-item" role="presentation"></li>
+
+					<li class="nav-item" role="presentation"><a class="nav-link "
+						href="/SpringDBMS/doctor"><i class="fas fa-procedures"></i><span>Manage
+								Patient</span></a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link"
+						href="/SpringDBMS/doctor/update?doctorId=${user}"><i class="far fa-user-circle"></i><span>Manage Me</span></a></li>
+					<li class="nav-item" role="presentation"><a class ="nav-link active" href="/SpringDBMS/doctor/setCost"><i class="fas fa-wrench"></i><span>Set Cost per Sitting</span></a></li>
+					<li class="nav-item" role="presentation"><a class ="nav-link" href="/SpringDBMS/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+						
+					
+					<li class="nav-item" role="presentation"></li>
+				</ul>
                 <div class="text-center d-none d-md-inline"></div>
             </div>
         </nav>

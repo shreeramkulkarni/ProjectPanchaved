@@ -93,24 +93,12 @@
                                             <th>address</th>
                                             <th>District</th>
                                             <th>State</th>
+                                            <th>delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 			
-				<c:forEach items="${patient}" var="user">
-                                        
-                                         <tr id="sTr">
-                                            <td><a href='/SpringDBMS/admin/patient/update?patientId=${user.patientId}'><c:out value="${user.patientId}"/></a></td>
-                                            <td><c:out value="${user.patientName}"/></td>
-                                            <td><c:out value="${user.gender}"/></td>
-                                            <td><c:out value="${user.bloodGroup}"/></td>
-                                            <td><c:out value="${user.phoneNo}"/></td>
-                                            <td><c:out value="${user.dob}"/></td>
-                                            <td><c:out value="${user.address}"/></td>
-                                            <td><c:out value="${user.district}"/></td>
-                                            <td><c:out value="${user.state}"/></td>
-                                        </tr>
-			</c:forEach>
+				
                                     </tbody>
                                    
                                 </table>

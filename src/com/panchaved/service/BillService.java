@@ -14,7 +14,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.panchaved.enitity.PatientBill;
+import com.panchaved.entity.PatientBill;
 
 
 @Service

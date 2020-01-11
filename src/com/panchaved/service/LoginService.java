@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
 
-import com.panchaved.enitity.Login;
+import com.panchaved.entity.Login;
 import com.panchaved.util.LoginQuery;
 
 @Service

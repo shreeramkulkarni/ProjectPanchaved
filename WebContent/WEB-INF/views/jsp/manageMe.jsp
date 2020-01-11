@@ -42,19 +42,18 @@
 				<hr class="sidebar-divider my-0">
 				<ul class="nav navbar-nav text-light" id="accordionSidebar">
 					<li class="nav-item" role="presentation"></li>
-					<li class="nav-item" role="presentation"><a class="nav-link"
-						href="/SpringDBMS/doctor"><i class="fas fa-tachometer-alt"></i><span>Manage
+
+					<li class="nav-item" role="presentation"><a class="nav-link "
+						href="/SpringDBMS/doctor"><i class="fas fa-procedures"></i><span>Manage
 								Patient</span></a></li>
 					<li class="nav-item" role="presentation"><a class="nav-link active"
-						href="/SpringDBMS/doctor/update?doctorId=${user}"><i
-							class="fas fa-user"></i><span>Manage Me</span></a></li>
-					<li class="nav-item" role="presentation"><a class ="nav-link" href="/SpringDBMS/logout"><i class="fas fa-window-maximize"></i><span>Logout</span></a></li>
+						href="/SpringDBMS/doctor/update?doctorId=${user}"><i class="far fa-user-circle"></i><span>Manage Me</span></a></li>
+					<li class="nav-item" role="presentation"><a class ="nav-link" href="/SpringDBMS/doctor/setCost"><i class="fas fa-wrench"></i><span>Set Cost per Sitting</span></a></li>
+					<li class="nav-item" role="presentation"><a class ="nav-link" href="/SpringDBMS/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+						
 					
+					<li class="nav-item" role="presentation"></li>
 				</ul>
-				
-				
-				
-				
 				
 				<div class="text-center d-none d-md-inline">
 				</div>

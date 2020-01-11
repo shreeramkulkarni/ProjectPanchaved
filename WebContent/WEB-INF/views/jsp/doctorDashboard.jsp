@@ -43,12 +43,14 @@
 					<li class="nav-item" role="presentation"></li>
 
 					<li class="nav-item" role="presentation"><a class="nav-link active"
-						href="/SpringDBMS/doctor"><i class="fas fa-window-maximize"></i><span>Manage
+						href="/SpringDBMS/doctor"><i class="fas fa-procedures"></i><span>Manage
 								Patient</span></a></li>
 					<li class="nav-item" role="presentation"><a class="nav-link"
-						href="/SpringDBMS/doctor/update?doctorId=${user}"><i
-							class="fas fa-window-maximize"></i><span>Manage Me</span></a></li>
-					<li class="nav-item" role="presentation"><a class ="nav-link" href="/SpringDBMS/logout"><i class="fas fa-window-maximize"></i><span>Logout</span></a></li>
+						href="/SpringDBMS/doctor/update?doctorId=${user}"><i class="far fa-user-circle"></i><span>Manage Me</span></a></li>
+					<li class="nav-item" role="presentation"><a class ="nav-link" href="/SpringDBMS/doctor/setCost"><i class="fas fa-wrench"></i><span>Set Cost per Sitting</span></a></li>
+					<li class="nav-item" role="presentation"><a class ="nav-link" href="/SpringDBMS/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+						
+					
 					<li class="nav-item" role="presentation"></li>
 				</ul>
 				<div class="text-center d-none d-md-inline">
@@ -135,7 +137,7 @@
                                               <!--  <form id="f2"> -->
                                                     <div class="form-row">
                                                         <div class="col">
-                                                            <div class="form-group"><label for="first_name"><strong>Patient Name</strong></label><form:input path = "patientName" class="form-control" type="text" placeholder="Babu rao" id="patientName" style="margin: -7px;"/></div>
+                                                            <div class="form-group"><label for="first_name"><strong>Patient Name</strong></label><form:input path = "patientName" class="form-control" type="text" placeholder="Patient Name" id="patientName" style="margin: -7px;"/></div>
                                                         </div>
                                                         <div class="col">
                                                             <div class="form-group">

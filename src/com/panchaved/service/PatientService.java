@@ -20,19 +20,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.panchaved.enitity.Doctor;
-import com.panchaved.enitity.Patient;
+import com.panchaved.entity.Doctor;
+import com.panchaved.entity.Patient;
 import com.panchaved.util.CaseTaking;
 import com.panchaved.util.DbConnect;
 import com.panchaved.util.DoctorQuery;
 import com.panchaved.util.PatientQuery;
-import com.panchaved.util.Prescriptor;
+import com.panchaved.entity.Prescriptor;
 
 @Service
 public class PatientService {
 
 
 	public ArrayList<Patient> patients;
+
 	public PatientService() {
 
 		this.patients = new ArrayList<Patient>();
@@ -166,17 +167,17 @@ public class PatientService {
 	}
 
 	public void saveCasetaking(Patient pat,CaseTaking casetake) {
-		
+
 		String FOLDER = System.getenv("PANCH_HOME")+"Patient\\"+casetake.getPatientID()+"_"+pat.getPatientName();
 		System.out.println(FOLDER);
 		File newFolder = new File(FOLDER);
 		newFolder.mkdirs();
-		
+
 		Date dateobj = new Date();
 		casetake.setDate(dateobj);
 		String fname = casetake.getPatientID()+"_"+pat.getPatientName();
 		File yourFile = new File(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_case.txt");//e.g 1_sukrut_case.txt
-			
+
 		try {
 			if(!yourFile.exists()){
 				System.out.println("Creating new FIle!!!");
@@ -207,7 +208,7 @@ public class PatientService {
 		FileInputStream fis = new FileInputStream(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_case.txt");
 
 		ObjectInputStream ois = new ObjectInputStream(fis);
-		
+
 
 		Object obj =null;
 
@@ -228,7 +229,7 @@ public class PatientService {
 		} 
 		return objects;     
 	}
-	
+
 	public ArrayList<Patient> getSearchRecords(String searchText,int page) {
 		int p = (page-1)*20;
 		ResultSet rs = PatientQuery.searchQueryPatient(searchText,p);
@@ -255,7 +256,18 @@ public class PatientService {
 
 		return (ArrayList<Patient>) patients;
 	}
-	
+
+	public int removePatient(int patientId) throws SQLException {
+		PreparedStatement pstm = PatientQuery.deleteQueryPatient();
+		try {
+			pstm.setInt(1, patientId);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pstm.executeUpdate();
+	}
 	public ArrayList<Integer> getIds(){
 		ArrayList<Integer> id = new ArrayList<Integer>();
 		try {
@@ -268,18 +280,18 @@ public class PatientService {
 		}
 		return id;	
 	}
-	
-	
-public void savePrescription(Patient pat,Prescriptor prescription) {
-		
+
+
+	public void savePrescription(Patient pat,Prescriptor prescription) {
+
 		String FOLDER = System.getenv("PANCH_HOME")+"Patient\\"+pat.getPatientId()+"_"+pat.getPatientName();
 		System.out.println(FOLDER);
 		File newFolder = new File(FOLDER);
 		newFolder.mkdirs();
-		
+
 		String fname = pat.getPatientId()+"_"+pat.getPatientName();
 		File yourFile = new File(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_presc.txt");//e.g 1_sukrut_case.txt
-			
+
 		try {
 			if(!yourFile.exists()){
 				System.out.println("Creating new FIle!!!");
@@ -303,33 +315,36 @@ public void savePrescription(Patient pat,Prescriptor prescription) {
 
 		}
 	}
-	
-public ArrayList<Object> getPrescriptions(Patient p) throws Exception {
-	String fname = p.getPatientId()+"_"+p.getPatientName();
-	ArrayList<Object> objects = new ArrayList<Object>(); 
-	FileInputStream fis = new FileInputStream(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_presc.txt");
 
-	ObjectInputStream ois = new ObjectInputStream(fis);
-	
+	public ArrayList<Object> getPrescriptions(Patient p) throws Exception {
+		String fname = p.getPatientId()+"_"+p.getPatientName();
+		ArrayList<Object> objects = new ArrayList<Object>(); 
+		FileInputStream fis = new FileInputStream(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_presc.txt");
 
-	Object obj =null;
+		ObjectInputStream ois = new ObjectInputStream(fis);
 
-	boolean isExist = true;
 
-	while(isExist){
-		if(fis.available() != 0){
-			obj = ois.readObject();    
-			objects.add(obj);
+		Object obj =null;
+
+		boolean isExist = true;
+
+		while(isExist){
+			if(fis.available() != 0){
+				obj = ois.readObject();    
+				objects.add(obj);
+			}
+			else{
+				isExist =false;
+			}
 		}
-		else{
-			isExist =false;
-		}
+		System.out.println(objects.size());
+		for (Object object : objects) {
+			System.out.println(object);
+		} 
+		return objects;     
 	}
-	System.out.println(objects.size());
-	for (Object object : objects) {
-		System.out.println(object);
-	} 
-	return objects;     
-}
-	
+
+
+
+
 }

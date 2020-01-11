@@ -31,14 +31,14 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import com.panchaved.enitity.Doctor;
-import com.panchaved.enitity.Patient;
-import com.panchaved.enitity.PatientBill;
+import com.panchaved.entity.Doctor;
+import com.panchaved.entity.Patient;
+import com.panchaved.entity.PatientBill;
 import com.panchaved.service.BillService;
 import com.panchaved.service.DoctorService;
 import com.panchaved.service.PatientService;
-import com.panchaved.util.AppSession;
 import com.panchaved.util.PatientQuery;
+import com.panchaved.entity.Prescriptor;
 
 @Controller
 @RequestMapping("/admin")
@@ -67,8 +67,12 @@ public class AdminController {
 	
 	@RequestMapping(value="/patient",method = RequestMethod.GET)
 	public String patient(Model model) {
-		showPatients(model, "1");
+//		showPatients(model, "1");
 		return "table.jsp";
+	}
+	@RequestMapping(value="/removePatient",method = RequestMethod.GET)
+	public @ResponseBody int removePatient(Model model,@RequestParam("patientId") int patientId) throws SQLException {
+		return pService.removePatient(patientId);
 	}
 	@RequestMapping(value="/ajaxPatient", method = RequestMethod.GET)
 	public @ResponseBody ArrayList showPatients(Model model,@RequestParam("page") String p) {
@@ -190,6 +194,43 @@ public class AdminController {
 		return "newDoctor.jsp";
 	}
 
+	
+	@RequestMapping(value = "/bill" , method = RequestMethod.GET)
+	public String showBill( Model model, HttpServletRequest req ) throws IOException {
+		HttpSession session = req.getSession(false);
+		model.addAttribute("pat",pService.getSelectedPatient((int)session.getAttribute("PID")));
+		Map<String, String> map = bService.readCPS();
+		model.addAttribute("CPSMap", map);
+		model.addAttribute("patientBill", new PatientBill());
+		System.out.println("ajsdyfgusydfguyg");
+		return "billReceipt.jsp";
+	}
+	
+	@RequestMapping(value = "/bill" , method = RequestMethod.POST)
+	public String saveBill( Model model, @ModelAttribute("diagnosis")Prescriptor prescriptor,@ModelAttribute("pat")Patient p) throws IOException {
+		Map<String, String> map = bService.readCPS();
+		model.addAttribute("CPSMap", map);
+		Patient patient = pService.getSelectedPatient(p.getPatientId());
+		pService.savePrescription(patient, prescriptor);
+		model.addAttribute("pat",p);
+		return "billReceipt.jsp";
+	}
+	
+	@RequestMapping(value = "/setCost" , method = RequestMethod.GET)
+	public String showCPS( HttpServletRequest req,Model model, HttpSession session ) throws IOException {
+		model.addAttribute("cpsStatus","");
+		return "costPerSitting.jsp";
+	}
+	
+	
+	@RequestMapping(value = "/setCost" , method = RequestMethod.POST) //
+	public String saveCPS(Model model, @RequestBody Map<String,String> myrequestMap) throws IOException { //
+		System.out.println(myrequestMap);
+		bService.saveCps(myrequestMap);
+		model.addAttribute("cpsStatus","CHANGES SAVED!!!!");
+		return "costPerSitting.jsp"; 
+	}
+	
 	@RequestMapping(value = "/getids" , method = RequestMethod.GET)
 	public @ResponseBody ArrayList<Integer> loadIds()
 	{	

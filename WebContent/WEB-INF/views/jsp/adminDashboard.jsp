@@ -54,7 +54,7 @@
            		 		<div class="col"></div>
            		 		<div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-left-success py-2">
-                                <a href="/SpringDBMS/admin/patient"><div class="card-body">
+                                <a href="/SpringDBMS/admin/patient" ><div class="card-body">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Patient</span></div>
@@ -100,6 +100,7 @@
 	<script src="<c:url value="/assets/js/theme.js"/>"></script>
     <script src="<c:url value="/assets/js/jquery.easing.js"/>"></script>
     <script src="<c:url value="/assets/js/search.js"/>"></script>
+   
 </body>
 
 </html>

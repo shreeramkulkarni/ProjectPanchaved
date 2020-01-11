@@ -52,6 +52,19 @@ public class PatientQuery {
 		}
 		return pstm;
 	}
+	public static PreparedStatement deleteQueryPatient() {
+		try {
+			String sql ="DELETE from `panchaved_data`.`patient` "
+					+ "WHERE (`patientId` = ?)";
+
+			pstm = con.prepareStatement(sql);
+
+		}catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return pstm;
+	}
 
 	public static ResultSet selectWQueryPatient(Integer id) {
 

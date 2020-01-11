@@ -1,4 +1,4 @@
-package com.panchaved.enitity;
+package com.panchaved.entity;
 
 public class Login {
 	private long userID;

@@ -1,5 +1,21 @@
 var currPageNo = 1;
 
+$(function(){
+	$.ajax({
+		url : "/SpringDBMS/admin/ajaxPatient",
+		data : "page=1",
+		success : function(data) {
+			console.log(data.length);
+			if(data.length != 0) {
+				console.log(data);
+				loadData(data);
+			}else {
+				$("#next").prop("disabled",true);
+				currPageNo--;
+			}
+		}
+	});	
+});
 
 function getPPage() {
 	
@@ -67,8 +83,22 @@ function loadData(data) {
 		"<td>"+data[i].dob+"</td>"+
 		"<td>"+data[i].address+"</td>"+
 		"<td>"+data[i].district+"</td>"+
-		"<td>"+data[i].state+"</td>";
-		$('tbody').append("<tr>"+dyData+"</tr>");
+		"<td>"+data[i].state+"</td>"+
+		"<td><button type='button' class='close' aria-label='Close' onclick='removeEntry("+data[i].patientId+")'><span aria-hidden='true'>&times;</span></button></td>";
+		$('tbody').append("<tr id="+data[i].patientId+">"+dyData+"</tr>");
+		
 	}
 	$("#dataTable_info").text("Showing page "+currPageNo);
+}
+function removeEntry(patientId){
+	console.log(patientId);
+	$.ajax({
+		url : "/SpringDBMS/admin/removePatient",
+		data : "patientId="+patientId,
+		success : function(data) {
+			alert("Removed "+data+" Entry from the Database");
+		}
+	});	
+	$("#"+patientId+"").remove();
+
 }

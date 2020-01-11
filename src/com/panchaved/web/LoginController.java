@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.panchaved.enitity.Login;
+import com.panchaved.entity.Login;
 import com.panchaved.service.DoctorService;
 import com.panchaved.service.LoginService;
 import com.panchaved.util.ForgotPasswordQuery;
@@ -47,6 +47,7 @@ public class LoginController {
 			model.addAttribute("userID", userID);
 			System.out.println("ok!");
 			return "redirect:/"+radio;
+			
 			
 		}else {
 			model.addAttribute("fail_msg", "INVALID CREDENTIALS / WRONG HANDLER TYPE");

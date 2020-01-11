@@ -12,8 +12,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.panchaved.enitity.Doctor;
-import com.panchaved.enitity.Patient;
+import com.panchaved.entity.Doctor;
+import com.panchaved.entity.Patient;
 import com.panchaved.util.DoctorQuery;
 import com.panchaved.util.EmployeeQuery;
 import com.panchaved.util.PatientQuery;
