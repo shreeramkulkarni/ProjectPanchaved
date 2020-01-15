@@ -19,6 +19,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileSystemUtils;
 
 import com.panchaved.entity.Doctor;
 import com.panchaved.entity.Patient;
@@ -258,6 +259,10 @@ public class PatientService {
 	}
 
 	public int removePatient(int patientId) throws SQLException {
+		Patient p = getSelectedPatient(patientId);
+		String patientFilePath = System.getenv("PANCH_HOME")+"\\Patient\\"+patientId+"_"+p.getPatientName();
+		
+		File patientFile = new File(patientFilePath);
 		PreparedStatement pstm = PatientQuery.deleteQueryPatient();
 		try {
 			pstm.setInt(1, patientId);
@@ -265,6 +270,14 @@ public class PatientService {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if(patientFile.exists()) {
+	
+			if(!FileSystemUtils.deleteRecursively(patientFile)) {
+				return 0;
+			}
+			
+			return pstm.executeUpdate();
 		}
 		return pstm.executeUpdate();
 	}

@@ -79,21 +79,12 @@
                                             <th>Qualification</th>
                                             <th>Address</th>
                                             <th>City</th>
+                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 			
-				<c:forEach items="${doctor}" var="user">
-                                        
-                                         <tr id="sTr">
-                                            <td><a onclick="" href='/SpringDBMS/admin/doctor/update?doctorID=${user.doctorID}'><c:out value="${user.doctorID}"/></a></td>
-                                            <td><c:out value="${user.doctorName}"/></td>
-                                            <td><c:out value="${user.doctorDOB}"/></td>
-                                            <td><c:out value="${user.doctorQualification}"/></td>
-                                            <td><c:out value="${user.doctorAddress}"/></td>
-                                            <td><c:out value="${user.doctorCity}"/></td>
-                                        </tr>
-			</c:forEach>
+
                                     </tbody>
                                    
                                 </table>

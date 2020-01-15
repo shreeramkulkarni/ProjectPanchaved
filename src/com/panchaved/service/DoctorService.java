@@ -28,6 +28,17 @@ public class DoctorService {
 		this.doctors = new ArrayList<Doctor>();
 	}
 	
+	public int removeDoctor(long doctorID) throws SQLException {
+		PreparedStatement pstm = DoctorQuery.deleteQueryDoctor();
+		try {
+			pstm.setLong(1, doctorID);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pstm.executeUpdate();
+	}
 	
 	public boolean insertDoctor(Doctor doc)
 	{

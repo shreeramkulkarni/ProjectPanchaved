@@ -19,7 +19,19 @@ public class DoctorQuery {
 	private static Connection con1 = DbConnect.Connect();
 	static ResultSet rs;
 
-	
+	public static PreparedStatement deleteQueryDoctor() {
+		try {
+			String sql ="DELETE from `panchaved_data`.`doctor` "
+					+ "WHERE (`doctorID` = ?)";
+
+			pstm = con.prepareStatement(sql);
+
+		}catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return pstm;
+	}
 	public static ResultSet selectQueryDoctor(String offset) {
 		try {
 			String sql ="select * from doctor limit "+offset+",20";

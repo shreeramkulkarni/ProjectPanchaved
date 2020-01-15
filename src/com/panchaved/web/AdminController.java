@@ -71,8 +71,13 @@ public class AdminController {
 		return "table.jsp";
 	}
 	@RequestMapping(value="/removePatient",method = RequestMethod.GET)
-	public @ResponseBody int removePatient(Model model,@RequestParam("patientId") int patientId) throws SQLException {
-		return pService.removePatient(patientId);
+	public @ResponseBody int removePatient(@RequestParam("patientId") int patientId) throws SQLException {
+					
+			return pService.removePatient(patientId);
+	}
+	@RequestMapping(value="/removeDoctor",method = RequestMethod.GET)
+	public @ResponseBody int removeDoctor(@RequestParam("doctorID") long doctorID) throws SQLException {
+		return dService.removeDoctor(doctorID);
 	}
 	@RequestMapping(value="/ajaxPatient", method = RequestMethod.GET)
 	public @ResponseBody ArrayList showPatients(Model model,@RequestParam("page") String p) {
@@ -142,7 +147,7 @@ public class AdminController {
 
 	@RequestMapping(value="/doctor")
 	public String doctor(Model model) {
-		showDoctors(model, "1"); 
+//		showDoctors(model, "1"); 
 		return "doctorTable.jsp";
 	}
 

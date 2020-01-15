@@ -91,14 +91,14 @@ function loadData(data) {
 	$("#dataTable_info").text("Showing page "+currPageNo);
 }
 function removeEntry(patientId){
-	console.log(patientId);
+//	console.log(patientId);
 	$.ajax({
 		url : "/SpringDBMS/admin/removePatient",
 		data : "patientId="+patientId,
 		success : function(data) {
 			alert("Removed "+data+" Entry from the Database");
+			$("#"+patientId+"").remove();
 		}
 	});	
-	$("#"+patientId+"").remove();
 
 }
