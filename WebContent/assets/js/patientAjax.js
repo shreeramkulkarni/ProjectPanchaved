@@ -84,20 +84,25 @@ function loadData(data) {
 		"<td>"+data[i].address+"</td>"+
 		"<td>"+data[i].district+"</td>"+
 		"<td>"+data[i].state+"</td>"+
-		"<td><button type='button' class='close' aria-label='Close' onclick='removeEntry("+data[i].patientId+")'><span aria-hidden='true'>&times;</span></button></td>";
+		"<td><button type='button' class='close' aria-label='Close' data-toggle='modal' data-target='#myModal' onclick=noteEntry("+data[i].patientId+",'"+data[i].patientName+"')><span aria-hidden='true'>&times;</span></button></td>";
 		$('tbody').append("<tr id="+data[i].patientId+">"+dyData+"</tr>");
 		
 	}
 	$("#dataTable_info").text("Showing page "+currPageNo);
 }
-function removeEntry(patientId){
+function noteEntry(patientId,patientName){
+	$("#patient").text(patientId +":"+patientName);
+	$("#yes").val(patientId);
+	console.log("yes:"+$("#yes").val());
+}
+function removeEntry(){
 //	console.log(patientId);
 	$.ajax({
 		url : "/SpringDBMS/admin/removePatient",
-		data : "patientId="+patientId,
+		data : "patientId="+$("#yes").val(),
 		success : function(data) {
-			alert("Removed "+data+" Entry from the Database");
-			$("#"+patientId+"").remove();
+			$('#finalMsg').modal('show');
+			$("#"+$("#yes").val()+"").remove();
 		}
 	});	
 
