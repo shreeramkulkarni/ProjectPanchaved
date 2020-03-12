@@ -1,21 +1,33 @@
 package com.panchaved.entity;
 
-import java.io.File;
-import java.nio.file.FileSystem;
-
-import org.springframework.util.FileSystemUtils;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Test {
 
-	public static void main(String[] args) {
-		String s = System.getenv("PANCH_HOME")+"\\140_babya";
-		File f = new File(s);
-		if (f.exists()) {
-			
-			System.out.println("exits");
-			System.out.println(FileSystemUtils.deleteRecursively(f));
-		}
-		
-	}
+	private static final String PATFILE = System.getenv("PANCH_HOME")+"Patient\\";
 
+	public static void main(String[] args) throws IOException {
+
+		LocalDate ldate = LocalDate.now(); 
+		Date date = new Date();
+		Calendar c = Calendar.getInstance();
+		
+		System.out.println("date :"+date+" ");
+
+		//		for (int i = 0; i < listOfFiles.length; i++) {
+		//			Path path = listOfFiles[i].toPath();
+		//			FileTime creationTime = (FileTime) Files.getAttribute(path, "creationTime");
+		//			String dateCreated = df.format(creationTime.toMillis());
+		//
+		//			if (listOfFiles[i].isFile()) {
+		//				System.out.println("File " + listOfFiles[i].getName()+" date "+dateCreated);
+		//			} else if (listOfFiles[i].isDirectory()) {
+		//				System.out.println("Directory " + listOfFiles[i].getName());
+		//			}
+		//		}
+		//	}
+	}
 }

@@ -2,22 +2,20 @@ package com.panchaved.entity;
 
 import java.sql.Date;
 
-public class Patient {
-	private String patientName;
-	
+import org.springframework.stereotype.Component;
 
+@Component
+public class Patient {
+	private String patientName;	
 	private int patientId;
 	private String gender;
 	private long phoneNo;
 	private String bloodGroup;
-	
-
 	private java.sql.Date dob;
 	private String address;
 	private String district;
 	private String state;
 	private String remarks;
-	private String casetaking;
 
 
 	public Patient(int patientId, String patientName, String gender, long phoneNo, String bloodGroup, Date dob, String address,
@@ -35,22 +33,7 @@ public class Patient {
 		this.remarks = remarks;
 	}
 	
-	public Patient(int patientId, String patientName, String gender, long phoneNo, String bloodGroup, Date dob, String address,
-			String district, String state,String remarks,String casetaking) {
-		super();
-		this.setPatientId(patientId);
-		this.patientName = patientName;
-		this.gender = gender;
-		this.phoneNo = phoneNo;
-		this.bloodGroup = bloodGroup;
-		this.dob = dob;
-		this.address = address;
-		this.district = district;
-		this.state = state;
-		this.remarks = remarks;
-		this.casetaking = casetaking;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Patient [patientId=" + patientId + ", patientName=" + patientName + ", gender=" + gender + ", phoneNo="
@@ -157,13 +140,6 @@ public class Patient {
 		this.remarks = remarks;
 	}
 
-	public String getCasetaking() {
-		return casetaking;
-	}
-
-	public void setCasetaking(String casetaking) {
-		this.casetaking = casetaking;
-	}
 
 
 }

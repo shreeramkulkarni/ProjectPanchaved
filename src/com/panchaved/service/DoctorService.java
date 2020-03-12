@@ -1,22 +1,15 @@
 package com.panchaved.service;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.panchaved.entity.Doctor;
-import com.panchaved.entity.Patient;
-import com.panchaved.util.DoctorQuery;
-import com.panchaved.util.EmployeeQuery;
-import com.panchaved.util.PatientQuery;
+import com.panchaved.entity.*;
+import com.panchaved.util.*;
 
 @Component
 public class DoctorService {

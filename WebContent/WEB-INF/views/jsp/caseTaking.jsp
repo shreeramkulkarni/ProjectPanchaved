@@ -140,6 +140,7 @@
 	<script src="<c:url value="/assets/js/jquery.easing.js"/>"></script>
 	<script src="<c:url value="/assets/js/search.js"/>"></script>
 	<script src="<c:url value="/assets/js/caseTaking.js"/>"></script>
+
 </body>
 
 </html>

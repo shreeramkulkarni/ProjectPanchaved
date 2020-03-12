@@ -1,10 +1,10 @@
 package com.panchaved.util;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 
 public class PatientQuery {
 
@@ -27,7 +27,7 @@ public class PatientQuery {
 
 	public static PreparedStatement insertQueryPatient() {
 		try {
-			String sql ="insert into patient values(?,?,?,?,?,?,?,?,?,?,?)";
+			String sql ="insert into patient values(?,?,?,?,?,?,?,?,?,?)";
 			pstm = con.prepareStatement(sql);
 
 		}catch (SQLException e) {

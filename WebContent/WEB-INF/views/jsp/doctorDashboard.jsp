@@ -74,7 +74,7 @@
 					<div class="row mb-4">
 						<div class="col md-4">
 							<label for="patientId"><strong>Enter Patient Id</strong><br></label>
-							<input class="form-control" type="tel" inputmode="numeric"
+							<input id="patientInputId" class="form-control" type="tel" inputmode="numeric"
 								minlength="0" maxlength="6" required="" autofocus=""
 								placeholder="3-6 digits" name="patId" />
 							<div id="warn" style="color: red"></div>
@@ -172,9 +172,11 @@
                                                             <div class="form-group"><label for="state"><strong>State</strong></label><form:input path="state" class="form-control" type="text" id="state"/></div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group"><button id = "save" class="btn btn-primary" type="submit">Save</button></div>
-                                               
+                                                    <div class="form-group"><button class="btn btn-primary" type="submit">Save and Proceed</button></div>
+                                          
                                             </div>
+                                               
+                                            
                                         </div>
                                     </div>
                                 </div>

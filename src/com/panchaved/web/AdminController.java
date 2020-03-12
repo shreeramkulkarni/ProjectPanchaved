@@ -1,16 +1,11 @@
 package com.panchaved.web;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,12 +29,11 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.panchaved.entity.Doctor;
 import com.panchaved.entity.Patient;
-import com.panchaved.entity.PatientBill;
+import com.panchaved.entity.Prescription;
 import com.panchaved.service.BillService;
 import com.panchaved.service.DoctorService;
 import com.panchaved.service.PatientService;
 import com.panchaved.util.PatientQuery;
-import com.panchaved.entity.Prescriptor;
 
 @Controller
 @RequestMapping("/admin")
@@ -152,15 +147,15 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/ajaxDoctor", method = RequestMethod.GET)
-	public @ResponseBody JsonArray showDoctors(Model model,@RequestParam("page") String p) {
+	public @ResponseBody ArrayList showDoctors(Model model,@RequestParam("page") String p) {
 		System.out.println("inside the showDoctors()");
 		int page = Integer.parseInt(p);
-		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(dService.getAllRecords(page), new TypeToken<List<Doctor>>() {}.getType());
-		JsonArray json = element.getAsJsonArray();
+//		Gson gson = new Gson();
+//		JsonElement element = gson.toJsonTree(, new TypeToken<List<Doctor>>() {}.getType());
+//		JsonArray json = element.getAsJsonArray();
 
 		model.addAttribute("doctor", dService.getAllRecords(page));
-		return json;
+		return (ArrayList) dService.getAllRecords(page);
 	}
 
 	@RequestMapping(value="/doctor/update", method = RequestMethod.GET)
@@ -201,24 +196,41 @@ public class AdminController {
 
 	
 	@RequestMapping(value = "/bill" , method = RequestMethod.GET)
-	public String showBill( Model model, HttpServletRequest req ) throws IOException {
-		HttpSession session = req.getSession(false);
-		model.addAttribute("pat",pService.getSelectedPatient((int)session.getAttribute("PID")));
-		Map<String, String> map = bService.readCPS();
-		model.addAttribute("CPSMap", map);
-		model.addAttribute("patientBill", new PatientBill());
-		System.out.println("ajsdyfgusydfguyg");
-		return "billReceipt.jsp";
+	public String showSearchBillsAndPrescriptions( ) {
+		return "searchBillsAndPrescriptions.jsp";
+	}
+	
+	@RequestMapping(value = "/get/{formType}" , method = RequestMethod.GET)
+	public String showSearchBillsAndPrescriptions(Model model,@PathVariable("formType") String formType,@RequestParam("patientId") int patientId) {
+		model.addAttribute("pat", pService.getSelectedPatient(patientId));
+		System.out.println("type: "+formType);
+		if(formType.equals("bill"))
+			return "printBill.jsp";
+		else if(formType.equals("prescription"))
+			return "printPrescription.jsp";
+		else 
+			return "404.jsp";
+
 	}
 	
 	@RequestMapping(value = "/bill" , method = RequestMethod.POST)
-	public String saveBill( Model model, @ModelAttribute("diagnosis")Prescriptor prescriptor,@ModelAttribute("pat")Patient p) throws IOException {
+	public String saveBill( Model model, @ModelAttribute("diagnosis")Prescription prescriptor,@ModelAttribute("pat")Patient p) throws IOException {
 		Map<String, String> map = bService.readCPS();
 		model.addAttribute("CPSMap", map);
 		Patient patient = pService.getSelectedPatient(p.getPatientId());
-		pService.savePrescription(patient, prescriptor);
+//		pService.savePrescription(patient, prescriptor);
 		model.addAttribute("pat",p);
 		return "billReceipt.jsp";
+	}
+	
+	@RequestMapping(value = "/getBillsAndPrescritions")
+	public @ResponseBody Map getBillsAndPrescritions(@RequestParam("patientId") int patientId) {
+		Map jsonResponseMap = new HashMap();
+		jsonResponseMap.put("prescriptions", pService.getPrescriptions(patientId));
+		jsonResponseMap.put("bills", bService.getBills(patientId));
+		jsonResponseMap.put("patient", pService.getSelectedPatient(patientId));
+		
+		return jsonResponseMap;
 	}
 	
 	@RequestMapping(value = "/setCost" , method = RequestMethod.GET)

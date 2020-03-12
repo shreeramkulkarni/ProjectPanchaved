@@ -34,7 +34,7 @@ function removeEntry(index){
 function save(){
 	let jsonMap = {};
 	let i = 0;
-	for(i = 0;i < $('tr').length;i++){
+	for(i = 0;i < $('tr').length;i++){							//this creates the actual map 
 		var name = $("tr[id="+i+"] input[name=name]").val();
 		var cost = $("tr[id="+i+"] input[name=cost]").val();
 		jsonMap[name]=cost;

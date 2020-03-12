@@ -8,7 +8,7 @@ public class Login {
 	private String handlerType;
 	
 	public Login() {
-		// TODO Auto-generated constructor stub
+		//  Auto-generated constructor stub
 	}
 	
 	public Login(long userID, String password, String securityQuestion, String securityAnswer, String handlerType) {

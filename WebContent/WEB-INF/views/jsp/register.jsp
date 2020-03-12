@@ -33,8 +33,8 @@
             <div class="card-body">
             <form:form class="form-signin" method="post" modelAttribute="log">
               <div class="form-label-group">
-                <label for="inputUserame"><strong>ID</strong></label>
-                <form:input type="number" path="userID" id="inputID" name="id" class="form-control" placeholder="Mobile Number" required="true"/>
+                <label for="inputUserame"><strong>ID/Mobile Number</strong></label>
+                <form:input type="number" path="userID" id="inputID" name="id" class="form-control" placeholder="Mobile Number" value="" required="true"/>
               </div>
 				<div id = "someid">
               <div class="form-label-group">

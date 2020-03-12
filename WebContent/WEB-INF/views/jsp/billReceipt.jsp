@@ -79,7 +79,7 @@ input[type=number] {
                                 <div class="form-group"><label>Patient Name:</label><input class="form-control" type="text" value="${pat.patientName}"></div>
                             </form>
                             <form>
-                                <div class="form-group"><label>Doctor:</label><input class="form-control" type="text"></div>
+                                <div class="form-group"><label>Doctor:</label><input name="doctorName" class="form-control" type="text"></div>
                             </form>
                         </div>
                         <div class="col-md-6">
@@ -91,7 +91,7 @@ input[type=number] {
                     </div>
                     <div class="row container-fluid ">
                         
-                        <select class="form-control" id="sel1" onchange="addNewRow()">
+                        <select class="form-control d-print-none" id="sel1" onchange="addNewRow()">
 						 <option disabled selected value> Select a Treatment for billing </option>
 						<c:forEach items="${CPSMap}" var="map" >
 						<option value="${map.value}">${map.key} </option>
@@ -101,7 +101,7 @@ input[type=number] {
                     </div>
                     <div class="card shadow my-3">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Details of the bill are as follows:</p>
+                            <p class="text-primary text-center m-0 font-weight-bold">BILL DETAILS</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
@@ -115,25 +115,33 @@ input[type=number] {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="selected" items="${selectedTreatmentMap}">
+                                    <tr class="session">
+                                            <td id="tname"> ${selected.key} </td>
+                                           <td><input class="tkey" value=0 type='phone' id="${selected.key}" onkeyup='calculateAmount(this.id,${selected.value})'>  	X		<span data-val="${selected.value}">${selected.value}</span></td>
+                                            <td><i>&#8377;</i><span>  </span><input class="tvalue" id="amt" name="${selected.key}" type="number" value=0 disabled><br></td>
+                                        	<td><button type='button' class='close' aria-label='Close' onclick="removeEntry(this)"><span aria-hidden='true'>&times;</span></button></td>
+                                        </tr>
+                                        </c:forEach>
                                         <tr>
                                             <td>Medicine Charges</td>
-                                            <td></td>
-                                            <td><i>&#8377;</i><span>  </span><input id="amt" type="number" value=0><br></td>
+                                            <td>-----</td>
+                                            <td><i>&#8377;</i><span>  </span><input name="medicineCharges" id="amt" type="number" value=0 ><br></td>
                                         </tr>
                                         <tr>
                                             <td>Service Charges</td>
-                                            <td></td>
-                                            <td><i>&#8377;</i><span>  </span><input id="amt" type="number" value=0><br></td>
+                                            <td>-----</td>
+                                            <td><i>&#8377;</i><span>  </span><input name="serviceCharges" id="amt" type="number" value=0><br></td>
                                         </tr>
                                         <tr>
                                             <td>Consultation Fees</td>
-                                            <td></td>
-                                            <td><i>&#8377;</i><span>  </span><input id="amt" type="number" value=0><br></td>
+                                            <td>-----</td>
+                                            <td><i>&#8377;</i><span>  </span><input name="consultationFees" id="amt" type="number" value=0><br></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td></td>
-                                            <td><i>&#8377;</i><span>  </span><input id="Tamt" type="number" value=0 disabled><br></td>
+                                            <td>-----</td>
+                                            <td><i>&#8377;</i><span>  </span><input name="totalBillAmount" id="Tamt" type="number" value=0 disabled><br></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
@@ -142,20 +150,51 @@ input[type=number] {
                                 </table>
                             </div>
                             <div class="text-center">
-                 				<button class="btn btn-primary" id="print"> Save </button>
+                 				<button disabled class="btn btn-primary d-print-none" id="print" onclick=save()> Save and Print </button>
+                 				<button disabled class="btn btn-primary d-print-none" id="save" onclick=save()> Save </button>
                  			</div>
+                 			
                         </div>
+                        
                     </div>
                 </div> 
             </div>
            	
-            <footer class="bg-white sticky-footer">
+            <footer class="d-print-none bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Copyright Panchved &copy; Clinic 2019</span></div>
                 </div>
             </footer>
         </div>
     </div>
+    
+    
+    <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-primary">Important</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button id="retrySave" type="button" value="" class="btn"  onclick="save()" data-target="">Retry</button>
+          <button type="button" class="btn" data-dismiss="modal" data-toggle='modal' data-target="" >Ok</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+    
+    
     <script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
 	<script src="<c:url value="/assets/bootstrap/js/bootstrap.min.js"/>"></script>
 	<script src="<c:url value="/assets/js/chart.min.js"/>"></script>

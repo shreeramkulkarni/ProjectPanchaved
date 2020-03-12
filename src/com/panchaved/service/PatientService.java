@@ -1,7 +1,6 @@
 package com.panchaved.service;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,35 +10,39 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 
-import com.panchaved.entity.Doctor;
 import com.panchaved.entity.Patient;
-import com.panchaved.util.CaseTaking;
+import com.panchaved.entity.Prescription;
+import com.panchaved.repository.PrescriptionRepo;
 import com.panchaved.util.DbConnect;
-import com.panchaved.util.DoctorQuery;
 import com.panchaved.util.PatientQuery;
-import com.panchaved.entity.Prescriptor;
+import com.panchaved.util.PrescriptionQuery;
+import com.panchaved.entity.CaseTaking;
 
 @Service
 public class PatientService {
-
-
+	@Autowired
+	PrescriptionRepo pr;
+	
+	final String PATFILE = System.getenv("PANCH_HOME")+"Patient\\";
+	
 	public ArrayList<Patient> patients;
 
 	public PatientService() {
 
 		this.patients = new ArrayList<Patient>();
 	}
-
+	public List<Prescription> getPrescriptions(int patientId){
+		
+		return pr.findByPatientId(patientId);
+	}
 	public void registerPatient() {
 		Connection con = DbConnect.Connect();
 		try {
@@ -57,7 +60,6 @@ public class PatientService {
 	{
 		try {
 
-			String sql ="insert into patient values(?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstm = PatientQuery.insertQueryPatient();
 			pstm.setInt(1, id);
 			pstm.setString(2, patname);
@@ -69,7 +71,6 @@ public class PatientService {
 			pstm.setString(8, district);
 			pstm.setString(9, state);
 			pstm.setString(10, remarks);
-			pstm.setString(11, "");
 			int count = pstm.executeUpdate();
 			if(count!=0) {
 				return true; 
@@ -106,7 +107,7 @@ public class PatientService {
 			e.printStackTrace();
 		}
 
-		return (ArrayList<Patient>) patients;
+		return patients;
 	}
 
 	public Patient getSelectedPatient(Integer id) {
@@ -167,17 +168,21 @@ public class PatientService {
 
 	}
 
-	public void saveCasetaking(Patient pat,CaseTaking casetake) {
-
-		String FOLDER = System.getenv("PANCH_HOME")+"Patient\\"+casetake.getPatientID()+"_"+pat.getPatientName();
+	public void saveCasetaking(CaseTaking casetake) {
+		int patientIdCase = casetake.getPatientID();
+		String FOLDER = PATFILE+casetake.getPatientID()+"\\Case\\";
 		System.out.println(FOLDER);
-		File newFolder = new File(FOLDER);
-		newFolder.mkdirs();
+		File patientDirectory = new File(FOLDER);
+		if(!patientDirectory.exists()) {
+			
+			patientDirectory.mkdirs();
+		}
 
 		Date dateobj = new Date();
 		casetake.setDate(dateobj);
-		String fname = casetake.getPatientID()+"_"+pat.getPatientName();
-		File yourFile = new File(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_case.txt");//e.g 1_sukrut_case.txt
+		String patientFilePath =  patientIdCase+"\\Case\\"+casetake.getPatientID();
+		
+		File yourFile = new File(PATFILE+patientFilePath+"_case.ser");//e.g 1_case.ser
 
 		try {
 			if(!yourFile.exists()){
@@ -188,7 +193,8 @@ public class PatientService {
 				os1.close();
 			}else{
 				System.out.println("OPening exixsting file");
-				ObjectOutputStream os2 = new ObjectOutputStream(new FileOutputStream(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_case.txt", true)) {
+				ObjectOutputStream os2 = new ObjectOutputStream(new FileOutputStream(PATFILE+patientFilePath+"_case.ser", true)) {
+					@Override
 					protected void writeStreamHeader() throws IOException {
 						reset();
 					}
@@ -197,16 +203,15 @@ public class PatientService {
 				os2.close();					
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
 	}
 
 	public ArrayList<Object> getCaseTaking(Patient p) throws Exception {
-		String fname = p.getPatientId()+"_"+p.getPatientName();
+		String patientFilePath = p.getPatientId()+"\\Case\\"+p.getPatientId();
 		ArrayList<Object> objects = new ArrayList<Object>(); 
-		FileInputStream fis = new FileInputStream(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_case.txt");
+		FileInputStream fis = new FileInputStream(PATFILE+patientFilePath+"_case.ser");
 
 		ObjectInputStream ois = new ObjectInputStream(fis);
 
@@ -255,12 +260,12 @@ public class PatientService {
 			e.printStackTrace();
 		}
 
-		return (ArrayList<Patient>) patients;
+		return patients;
 	}
 
 	public int removePatient(int patientId) throws SQLException {
 		Patient p = getSelectedPatient(patientId);
-		String patientFilePath = System.getenv("PANCH_HOME")+"\\Patient\\"+patientId+"_"+p.getPatientName();
+		String patientFilePath = PATFILE+patientId;
 		
 		File patientFile = new File(patientFilePath);
 		PreparedStatement pstm = PatientQuery.deleteQueryPatient();
@@ -295,69 +300,10 @@ public class PatientService {
 	}
 
 
-	public void savePrescription(Patient pat,Prescriptor prescription) {
-
-		String FOLDER = System.getenv("PANCH_HOME")+"Patient\\"+pat.getPatientId()+"_"+pat.getPatientName();
-		System.out.println(FOLDER);
-		File newFolder = new File(FOLDER);
-		newFolder.mkdirs();
-
-		String fname = pat.getPatientId()+"_"+pat.getPatientName();
-		File yourFile = new File(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_presc.txt");//e.g 1_sukrut_case.txt
-
-		try {
-			if(!yourFile.exists()){
-				System.out.println("Creating new FIle!!!");
-				yourFile.createNewFile();
-				ObjectOutputStream os1 = new ObjectOutputStream(new FileOutputStream(yourFile,true));
-				os1.writeObject(prescription);
-				os1.close();
-			}else{
-				System.out.println("OPening exixsting file");
-				ObjectOutputStream os2 = new ObjectOutputStream(new FileOutputStream(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_presc.txt", true)) {
-					protected void writeStreamHeader() throws IOException {
-						reset();
-					}
-				};
-				os2.writeObject(prescription);
-				os2.close();					
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
+	public void savePrescription(Prescription prescription) {
+		pr.save(prescription);
+		
 	}
-
-	public ArrayList<Object> getPrescriptions(Patient p) throws Exception {
-		String fname = p.getPatientId()+"_"+p.getPatientName();
-		ArrayList<Object> objects = new ArrayList<Object>(); 
-		FileInputStream fis = new FileInputStream(System.getenv("PANCH_HOME")+"Patient\\"+fname+"\\"+fname+"_presc.txt");
-
-		ObjectInputStream ois = new ObjectInputStream(fis);
-
-
-		Object obj =null;
-
-		boolean isExist = true;
-
-		while(isExist){
-			if(fis.available() != 0){
-				obj = ois.readObject();    
-				objects.add(obj);
-			}
-			else{
-				isExist =false;
-			}
-		}
-		System.out.println(objects.size());
-		for (Object object : objects) {
-			System.out.println(object);
-		} 
-		return objects;     
-	}
-
-
 
 
 }

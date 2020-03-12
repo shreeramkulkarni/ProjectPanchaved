@@ -23,6 +23,7 @@
         }
 
 $(function(){
+	console.log("casetaking!!");
 	var id= $('#field1').val();
 	$.ajax({
 		url : "/SpringDBMS/doctor/patient/casetaking",

@@ -4,7 +4,6 @@ import java.util.Date;
 
 
 public class Doctor {
-
 	
 	private  long doctorID;
 	private String doctorName;

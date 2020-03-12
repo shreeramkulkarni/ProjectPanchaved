@@ -40,9 +40,50 @@ function reviewData(patient) {
 	$("#state").val(patient.state);
 
 }
-
+document.getElementById("patientInputId")
+.addEventListener("keyup", function(event) {
+event.preventDefault();
+if (event.keyCode === 13) {
+    document.getElementById("proceed").click();
+}
+});
 $(function() {
 	//	
+	$.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+//	$("form :input").change(function(){
+//		$("#updatePatientProfile").attr("disabled",false);
+//		var formData = $("form").serializeObject();
+//		console.log(formData);
+//		$("#updatePatientProfile").click(function(){
+//			$.ajax({
+//				 headers: { 
+//				        'Accept': 'application/json',
+//				        'Content-Type': 'application/json' 
+//				    },
+//				url : "/SpringDBMS/doctor/updatePatientProfile",
+//				data:JSON.stringify(formData),
+//				type:"PUT",
+//				success : function() {
+//					console.log("success");
+//				}
+//			});
+//		});
+//		
+//	});
 	$('#sForm').hide();
 	$("#proceed").click(
 					function() {
