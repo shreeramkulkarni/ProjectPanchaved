@@ -60,13 +60,13 @@ input[type=number] {
                                 <div class="form-group"><label>Patient Name:</label><input class="form-control" type="text" value="${pat.patientName}" readonly></div>
                             </form>
                             <form>
-                                <div class="form-group"><label>Doctor:</label><input name="doctorName" class="form-control" type="text" readonly></div>
+                                <div class="form-group"><label>Doctor:</label><input name="doctorName" id="doctorName" class="form-control" type="text" readonly></div>
                             </form>
                         </div>
                         <div class="col-md-6">
                             <form>
                                 <div class="form-group"><label>PID:</label><input class="form-control" id="patid" type="text" value="${pat.patientId}" readonly></div>
-                                <div class="form-group"><label>Date:</label><input class="form-control" id="billDate" type="date" readonly></div>
+                                <div class="form-group"><label>Date:</label><input class="form-control" id="billDate" type="text" readonly></div>
                             </form>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ input[type=number] {
                                             <th>Description</th>
                                             <th>No. of Sittings</th>
                                             <th>Amount&nbsp;</th>
-                                            <th></th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -91,22 +91,22 @@ input[type=number] {
                                         <tr>
                                             <td>Medicine Charges</td>
                                             <td>-----</td>
-                                            <td><i>&#8377;</i><span>  </span><input name="medicineCharges" id="amt" type="number" value=0 disabled><br></td>
+                                            <td><i>&#8377;</i><span>  </span><input id="medicineCharges"  type="number" value=0 disabled><br></td>
                                         </tr>
                                         <tr>
                                             <td>Service Charges</td>
                                             <td>-----</td>
-                                            <td><i>&#8377;</i><span>  </span><input name="serviceCharges" id="amt" type="number" value=0 disabled><br></td>
+                                            <td><i>&#8377;</i><span>  </span><input id="serviceCharges" type="number" value=0 disabled><br></td>
                                         </tr>
                                         <tr>
                                             <td>Consultation Fees</td>
                                             <td>-----</td>
-                                            <td><i>&#8377;</i><span>  </span><input name="consultationFees" id="amt" type="number" value=0 disabled><br></td>
+                                            <td><i>&#8377;</i><span>  </span><input id="consultationFees"  type="number" value=0 disabled><br></td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
                                             <td>-----</td>
-                                            <td><i>&#8377;</i><span>  </span><input name="totalBillAmount" id="Tamt" type="number" value=0 disabled><br></td>
+                                            <td><i>&#8377;</i><span>  </span><input id="totalBillAmount" type="text" value=0 disabled><br></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
@@ -137,14 +137,7 @@ input[type=number] {
 	<script src="<c:url value="/assets/js/bs-charts.js"/>"></script>
 	<script src="<c:url value="/assets/js/theme.js"/>"></script>
 	<script src="<c:url value="/assets/js/jquery.easing.js"/>"></script>
-	<script src="<c:url value="/assets/js/billReceipt.js"/>"></script>
-	<script>
-	$(function(){
-		
-	});
-	
-	</script>
-	
+	<script src="<c:url value="/assets/js/printBill.js"/>"></script>
 	
 </body>
 

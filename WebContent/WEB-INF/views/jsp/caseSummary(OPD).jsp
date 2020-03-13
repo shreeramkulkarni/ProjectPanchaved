@@ -184,7 +184,7 @@ ${CPS}
 						
 						<div class="card mt-4">
 				<div class="card-header">
-					<p class="text-primary font-weight-bold">Diagnosis Details</p>
+					<p class="text-primary font-weight-bold">Prescription Details</p>
 				</div>
 				<div class="card-body">
 					<form >

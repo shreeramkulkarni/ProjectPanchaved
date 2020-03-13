@@ -12,7 +12,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Panchaved - Case Summary</title>
+<title>Print</title>
 <link rel="stylesheet"
 	href="<c:url value="/assets/bootstrap/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
@@ -76,7 +76,7 @@ ${CPS}
 			<div class="container-fluid">
 			<div class="card mt-3">
 				<div class="card-header">
-					<p class="text-primary font-weight-bold">Prescription Panel</p>
+					<p class="text-primary font-weight-bold">Prescription Panel <span class ="font-weight-bold" style="float:right;"><input class="form-control border-0 text-center" type="text" id="prescriptionDate" readonly></span></p>
 				</div>
 				<div class="card-body">
 				<form:form id = "basic" action="/SpringDBMS/doctor/bill" method="POST" modelAttribute="pat">
@@ -145,21 +145,21 @@ ${CPS}
 
 							<div class="card mt-4">
 				<div class="card-header">
-					<p class="text-primary font-weight-bold">Diagnosis Details</p>
+					<p class="text-primary font-weight-bold">Prescription Details</p>
 				</div>
 				<div class="card-body">
 					<form >
 					<div class="row">
 						<div class="col">
 							<p class="font-weight-bold">Prescription / Internal Medicines<span style="color:red;">*</span></p>
-							<div class="text-left" style="height: 280px;">
+							<div class="text-left" style="height: 230px;">
 								<textarea required="" autofocus="" name="prescription" id="prescription"
 									 class="form-control-lg border-0" style="height: 220px; width: 390px;" readonly ></textarea>
 							</div>
 						</div>
 						<div class="col">
 							<p class="font-weight-bold">Panchakarma Treatments<span style="color:red;">*</span></p>
-							<div class=" text-left mt-3" style="height: 280px;">
+							<div class=" text-left mt-3" style="height: 230px;">
 								<textarea required="" autofocus=""  name="treatment" id="printTreatment"
 									class="form-control-lg border-0" style="height: 220px; width: 390px;" readonly></textarea>
 							</div>
@@ -171,14 +171,14 @@ ${CPS}
 					<div class="row mt-3">
 						<div class="col">
 							<p class="m-0 font-weight-bold">Diet and Exercise<span style="color:red;">*</span></p>
-							<div class="text-left mt-3" style="height: 280px;">
+							<div class="text-left mt-3" style="height: 230px;">
 								<textarea required="" autofocus="" name="dietnexercise" id="dietnexercise"
 									class="form-control-lg border-0" style="height: 220px; width: 390px;" readonly></textarea>
 							</div>
 						</div>
 						<div class="col">
 							<p class="m-0 font-weight-bold">Miscellaneous</p>
-							<div class="text-left mt-3" style="height: 280px;">
+							<div class="text-left mt-3" style="height: 230px;">
 								<textarea required="" autofocus=""  name="miscellaneous" id="miscellaneous"
 									class="form-control-lg border-0" style="height: 220px; width: 390px;" readonly></textarea>
 							</div>
@@ -205,26 +205,8 @@ ${CPS}
 	<script src="<c:url value="/assets/js/jquery.easing.js"/>"></script> 
 	<script src="<c:url value="/assets/js/search.js"/>"></script>
 	<script src="<c:url value="/assets/js/printPrescription.js"/>"></script>
-	<script type="text/javascript">
-      $("#cpsmap").select2({
-    	  placeholder:"Select treatments"
-      });
-	</script>
- 	<script type="text/javascript">
- 	$(function(){
- 		
- 		$("#print").click(function(){
-			window.print();
-		});		
- 		var id= $('#patID').val();
- 			$('#submitDiag').click(function(){
- 				
- 				$('#basic').submit();
- 				});
-
-		});
+	
  	
-	</script> 
 </body>
 
 </html>

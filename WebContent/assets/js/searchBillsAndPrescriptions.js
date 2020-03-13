@@ -11,8 +11,8 @@ function getBillsAndPrescritions(){
 		url:"/SpringDBMS/admin/getBillsAndPrescritions",
 		data:"patientId="+$("#patientId").val(),
 		success : function(jsonResponse){
-			//console.log("Stringify : "+JSON.stringify(jsonResponse));
-			//console.log("Pure : "+jsonResponse["prescriptions"]);
+			localStorage.setItem("localJsonResponse",JSON.stringify(jsonResponse));
+			$('tr').remove();
 			patientData = jsonResponse;
 			
 			populateJsonResponse(jsonResponse);
@@ -29,7 +29,7 @@ function populateJsonResponse(jsonResponse) {
 	prescriptions.forEach(function(data){
 		p++;
 	var prescriptionData = "<th scope='row'>"+ p +"</th>" +
-			"<td><span onclick='getBillOrPrescription(this)' data-pid='"+data.prescriptionId+"'>"+data.prescriptionDate+"</span></td>"
+			"<td><span onclick='getBillOrPrescription(this)' data-id='"+data.prescriptionId+"'>"+data.prescriptionDate+"</span></td>"
 			$('#prescription').append("<tr >"+prescriptionData+"</tr>");		
 					
 	}); 
@@ -37,7 +37,7 @@ function populateJsonResponse(jsonResponse) {
 	bills.forEach(function(data){
 		b++;
 	var billData = "<th scope='row'>"+ b +"</th>" +
-			"<td><span onclick='getBillOrPrescription(this)' data-pid='"+data.billId+"'>"+data.dateOfBill+"</span></td>"
+			"<td><span onclick='getBillOrPrescription(this)' data-id='"+data.billId+"'>"+data.dateOfBill+"</span></td>"
 			$('#bill').append("<tr >"+billData+"</tr>");		
 					
 	}); 
@@ -45,7 +45,9 @@ function populateJsonResponse(jsonResponse) {
 
 function getBillOrPrescription(span){
 	let choice = $(span).parent().parent().parent().attr('id');
-	console.log(choice);
+	localStorage.setItem("localJsonResponse",JSON.stringify(patientData));
+	
+	localStorage.setItem("printId" ,$(span).attr("data-id"));
 	window.open("/SpringDBMS/admin/get/"+choice+"?patientId="+patientData["patient"].patientId);
 
 }
