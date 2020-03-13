@@ -25,5 +25,7 @@
   
   
 <absolute-ordering></absolute-ordering>
-  
+  <session-config>
+    <session-timeout>90</session-timeout>
+</session-config>
 </web-app>
