@@ -20,8 +20,8 @@ public class DoctorQuery {
 
 	public static PreparedStatement deleteQueryDoctor() {
 		try {
-			String sql ="DELETE from `panchaved_data`.`doctor` "
-					+ "WHERE (`doctorID` = ?)";
+			String sql ="DELETE from `panchaved_data`.`employee` "
+					+ "WHERE (`employeePhone` = ?)";
 
 			pstm = con.prepareStatement(sql);
 
