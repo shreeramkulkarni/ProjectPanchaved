@@ -76,7 +76,7 @@ public class LoginQuery {
 	
 	public static PreparedStatement updateQueryLogin() {
 		try {
-			String sql ="UPDATE login SET  password = ?, securityQuestion = ?, securityAnswer = ?, handlerType = ?"
+			String sql ="UPDATE login SET  password = ?, securityQuestion = ?, securityAnswer = ?, handlerType = ? "
 					+ "WHERE (userID = ?)";
 			pstm = con.prepareStatement(sql);
 			

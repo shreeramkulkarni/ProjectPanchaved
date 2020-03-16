@@ -100,7 +100,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute("log") Login log) {
-		System.out.println("hererrererer");
 		if(lService.updateLoginStatus(log))
 			return "login.jsp";
 		else

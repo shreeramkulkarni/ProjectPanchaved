@@ -33,12 +33,16 @@ public class DoctorService {
 		return pstm.executeUpdate();
 	}
 	
+	public boolean registerDoctor(Login login) {
+			
+		return true;
+	}
 	public boolean insertDoctor(Doctor doc)
 	{
 		try {
+			PreparedStatement pstm2 = EmployeeQuery.insertQueryEmployee();
 			PreparedStatement pstm = DoctorQuery.insertQueryDoctor().get(0);
 			PreparedStatement pstm1 = DoctorQuery.insertQueryDoctor().get(1);
-			PreparedStatement pstm2 = EmployeeQuery.insertQueryEmployee();
 			ResultSet rs = EmployeeQuery.getIds();
 			while(rs.next())
 			{

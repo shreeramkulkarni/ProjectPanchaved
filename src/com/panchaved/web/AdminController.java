@@ -189,7 +189,7 @@ public class AdminController {
 		if(dService.insertDoctor(doc)) {
 			model.addAttribute("success_msg", "New Doctor added successfully with ID:"+doc.getDoctorID());
 		}else {
-			model.addAttribute("success_msg", "Sorry Could Not Add Patient Please Retry ");
+			model.addAttribute("success_msg", "Sorry Could Not Add Doctor Please Retry ");
 		}
 		return "newDoctor.jsp";
 	}
