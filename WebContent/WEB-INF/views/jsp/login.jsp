@@ -64,8 +64,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                        <div class="form-group"><input class="form-control form-control-user" type="tel" id="InputEmail" aria-describedby="emailHelp" placeholder="UserID" name="userID"></div>
-                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="InputPassword" placeholder="Password" name="password"></div>
+                                        <div class="form-group"><input class="form-control form-control-user" type="tel" id="InputUserID"  placeholder="UserID(Numeric)" name="userID" pattern="\d*"></div>
+                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="InputPassword" placeholder="Password" name="password" ></div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><font color="red">${fail_msg}</font></div>
@@ -101,7 +101,7 @@
     $(document).ready(function(){
     	//global vars
     	var form = $("#loginform");
-    	var username= $("#InputEmail");
+    	var username= $("#InputUserID");
     	var password = $("#InputPassword");
 
     	//On Submitting

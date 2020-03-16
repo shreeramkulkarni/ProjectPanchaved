@@ -1,5 +1,14 @@
 $(function() {
-
+	window.onbeforeunload = function() {
+		console.log("bye");
+		if(localStorage.getItem("localJsonResponse")!=null){			
+			localStorage.removeItem("localJsonResponse");
+		}
+		if(localStorage.getItem("printId")!=null){		
+			localStorage.removeItem("printId");
+		}
+		  return '';
+		};
 });
 
 var patientData;
@@ -12,15 +21,26 @@ function getBillsAndPrescritions(){
 		data:"patientId="+$("#patientId").val(),
 		success : function(jsonResponse){
 			localStorage.setItem("localJsonResponse",JSON.stringify(jsonResponse));
-			$('tr').remove();
-			patientData = jsonResponse;
 			
+			$('tbody tr').remove();
+			patientData = jsonResponse;
+			if(jsonResponse['patient']==null){
+				alert("patient does not exist");
+				return;
+			}else if(jsonResponse["prescriptions"].length==0 && jsonResponse["bills"].length==0){
+				appendEmptyJsonMessage();
+				return;
+			}
 			populateJsonResponse(jsonResponse);
 			//console.log("---------------------\n"+JSON.stringify(jsonResponse["prescriptions"].sort(dateSort)));
 		}
 	});
 }
-
+function appendEmptyJsonMessage() {
+	//modal to be added 
+	alert("NO RECORDS AVAILABLE");
+	
+}
 function populateJsonResponse(jsonResponse) {
 	var bills = jsonResponse["bills"];
 	var prescriptions = jsonResponse["prescriptions"];
