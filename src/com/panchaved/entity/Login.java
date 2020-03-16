@@ -1,10 +1,16 @@
 package com.panchaved.entity;
 
+
 public class Login {
+	
 	private long userID;
+	
 	private String password;
+	
 	private String securityQuestion;
+	
 	private String securityAnswer;
+	
 	private String handlerType;
 	
 	public Login() {
