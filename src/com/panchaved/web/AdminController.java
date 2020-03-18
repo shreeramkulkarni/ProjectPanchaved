@@ -76,7 +76,7 @@ public class AdminController {
 	}
 	@RequestMapping(value="/removeDoctor",method = RequestMethod.GET)
 	public @ResponseBody int removeDoctor(@RequestParam("doctorID") long doctorID) throws SQLException {
-		System.out.println(lService.deleteLogin(doctorID));
+//		System.out.println(lService.deleteLogin(doctorID));
 		return dService.removeDoctor(doctorID);
 	}
 	@RequestMapping(value="/ajaxPatient", method = RequestMethod.GET)
