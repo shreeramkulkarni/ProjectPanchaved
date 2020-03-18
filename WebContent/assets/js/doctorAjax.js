@@ -49,10 +49,13 @@ function loadData(data) {
 	
 		$("td").remove();
 	for(i=0 ; i< data.length; i++){
-
+		let d = new Date(data[i].doctorDOB);
+		var curr_date = d.getDate();
+		var curr_month = d.getMonth() + 1; //Months are zero based
+		var curr_year = d.getFullYear();
 		let dyData = "<td><a href=/SpringDBMS/admin/doctor/update?doctorID="+data[i].doctorID+">"+data[i].doctorID+"</a></td>"+
 		"<td>"+data[i].doctorName+"</td>"+
-		"<td>"+data[i].doctorDOB+"</td>"+
+		"<td>"+curr_date + "-" + curr_month + "-" + curr_year+"</td>"+
 		"<td>"+data[i].doctorQualification+"</td>"+
 		"<td>"+data[i].doctorAddress+"</td>"+
 		"<td>"+data[i].doctorCity+"</td>"+
