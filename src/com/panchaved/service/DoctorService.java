@@ -40,9 +40,9 @@ public class DoctorService {
 	public boolean insertDoctor(Doctor doc)
 	{
 		try {
-			PreparedStatement pstm2 = EmployeeQuery.insertQueryEmployee();
-			PreparedStatement pstm = DoctorQuery.insertQueryDoctor().get(0);
-			PreparedStatement pstm1 = DoctorQuery.insertQueryDoctor().get(1);
+			PreparedStatement pstm2 = EmployeeQuery.insertQueryEmployee(); //insert into employee table
+			PreparedStatement pstm = DoctorQuery.insertQueryDoctor().get(0); //insert into doctor table
+//			PreparedStatement pstm1 = DoctorQuery.insertQueryDoctor().get(1);
 			ResultSet rs = EmployeeQuery.getIds();
 			while(rs.next())
 			{
@@ -56,12 +56,12 @@ public class DoctorService {
 			pstm2.setLong(2, doc.getDoctorID());
 			pstm2.executeUpdate();
 			
-			pstm1.setLong(1, doc.getDoctorID());
-			pstm1.setNull(2, java.sql.Types.NULL);
-			pstm1.setNull(3, java.sql.Types.NULL);
-			pstm1.setNull(4, java.sql.Types.NULL);
-			pstm1.setNull(5, java.sql.Types.NULL);
-			pstm1.executeUpdate();
+//			pstm1.setLong(1, doc.getDoctorID());
+//			pstm1.setNull(2, java.sql.Types.NULL);
+//			pstm1.setNull(3, java.sql.Types.NULL);
+//			pstm1.setNull(4, java.sql.Types.NULL);
+//			pstm1.setNull(5, java.sql.Types.NULL);
+//			pstm1.executeUpdate();
 			
 			pstm.setLong(1, doc.getDoctorID());
 			pstm.setString(2, doc.getDoctorName());

@@ -14,18 +14,21 @@ public class LoginService {
 
 	
 public boolean updateLoginStatus(Login log) {
-	PreparedStatement pstm = LoginQuery.updateQueryLogin();
+	PreparedStatement pstm = LoginQuery.insertQueryLogin(log);
 	try {
-	pstm.setString(1,log.getPassword());
-	pstm.setString(2,log.getSecurityQuestion());
-	pstm.setString(3,log.getSecurityAnswer());
-	pstm.setString(4,log.getHandlerType());
-	pstm.setLong(5,log.getUserID());
+		pstm.setLong(1,log.getUserID());
+	pstm.setString(2,log.getPassword());
+	pstm.setString(3,log.getSecurityQuestion());
+	pstm.setString(4,log.getSecurityAnswer());
+	pstm.setString(5,log.getHandlerType());
 	
+	System.out.println("inserting login query");
 	
 	int count = pstm.executeUpdate();
 	if(count!=0) {
-		return true; 
+		System.out.println("inserting login query success");
+		return true;
+		
 	}
 	
 	}

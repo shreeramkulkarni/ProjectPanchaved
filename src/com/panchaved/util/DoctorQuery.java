@@ -47,12 +47,12 @@ public class DoctorQuery {
 		
 		try {
 			String sql ="insert into doctor values(?,?,?,?,?,?)";
-			String sql1 = "insert into login values(?,?,?,?,?)";
+//			String sql1 = "insert into login values(?,?,?,?,?)";
 			pstm = con.prepareStatement(sql);
-			pstm1 = con.prepareStatement(sql1);
+//			pstm1 = con.prepareStatement(sql1);
 			statements = new ArrayList<PreparedStatement>();
 			statements.add(pstm);
-			statements.add(pstm1);
+//			statements.add(pstm1);
 			
  		}catch (SQLException e) {
 		

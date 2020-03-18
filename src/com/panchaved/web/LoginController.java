@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.panchaved.entity.Login;
 import com.panchaved.service.DoctorService;
 import com.panchaved.service.LoginService;
+import com.panchaved.util.EmployeeQuery;
 import com.panchaved.util.ForgotPasswordQuery;
 import com.panchaved.util.LoginQuery;
 
@@ -91,9 +92,10 @@ public class LoginController {
 		{
 			return "You are already registered!!!!\nProceed to Forgot Password.";
 		}
-		if(LoginQuery.checkID(id))
-			return "Please Contact Admin";	
-		else
+		else {
+			if(!EmployeeQuery.getIds(id))
+				return "You are not an Employee!! Contact Admin"; 
+		}
 			return "null";
 	}
 	
@@ -101,7 +103,7 @@ public class LoginController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@ModelAttribute("log") Login log) {
 		if(lService.updateLoginStatus(log))
-			return "login.jsp";
+			return "redirect:/";
 		else
 			return "register.jsp";
 	}

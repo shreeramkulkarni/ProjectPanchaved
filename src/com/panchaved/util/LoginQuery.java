@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.panchaved.entity.Login;
+
 
 public class LoginQuery {
 
@@ -74,10 +76,23 @@ public class LoginQuery {
 		return false;
 	}
 	
+	public static PreparedStatement insertQueryLogin(Login log) {
+		try {
+			String sql ="insert into login values(?,?,?,?,?);";
+			pstm = con.prepareStatement(sql);
+			
+		}catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		return pstm;
+	}
+	
 	public static PreparedStatement updateQueryLogin() {
 		try {
 			String sql ="UPDATE login SET  password = ?, securityQuestion = ?, securityAnswer = ?, handlerType = ? "
 					+ "WHERE (userID = ?)";
+			
 			pstm = con.prepareStatement(sql);
 			
 		}catch (SQLException e) {

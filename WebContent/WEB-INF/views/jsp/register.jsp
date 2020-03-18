@@ -110,6 +110,7 @@
 		$("#someid").hide();
 		$("#checkDoc").click(function(){
 			$.ajax({
+				type : 'GET',
 				url : "/SpringDBMS/regchk",
 				data : "id="+$("#inputID").val(),
 				success : function(data) {
