@@ -32,6 +32,7 @@ import com.panchaved.entity.Patient;
 import com.panchaved.entity.Prescription;
 import com.panchaved.service.BillService;
 import com.panchaved.service.DoctorService;
+import com.panchaved.service.LoginService;
 import com.panchaved.service.PatientService;
 import com.panchaved.util.PatientQuery;
 
@@ -45,6 +46,9 @@ public class AdminController {
 	DoctorService dService;
 	@Autowired 
 	BillService bService;
+	@Autowired
+	LoginService lService;
+	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String dashboard() {
@@ -72,13 +76,17 @@ public class AdminController {
 	}
 	@RequestMapping(value="/removeDoctor",method = RequestMethod.GET)
 	public @ResponseBody int removeDoctor(@RequestParam("doctorID") long doctorID) throws SQLException {
+		System.out.println(lService.deleteLogin(doctorID));
 		return dService.removeDoctor(doctorID);
 	}
 	@RequestMapping(value="/ajaxPatient", method = RequestMethod.GET)
 	public @ResponseBody ArrayList showPatients(Model model,@RequestParam("page") String p) {
 		int page = Integer.parseInt(p);
-		model.addAttribute("patient", pService.getAllRecords(page));
-		return pService.getAllRecords(page);
+		ArrayList<Patient> patients = pService.getAllRecords(page);
+		model.addAttribute("patient", patients);
+		
+		System.out.println(patients);
+		return patients;
 	}
 
 	//	@RequestMapping(value="/ajax", method = RequestMethod.GET)

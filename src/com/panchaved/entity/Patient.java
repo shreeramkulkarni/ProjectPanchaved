@@ -11,14 +11,14 @@ public class Patient {
 	private String gender;
 	private long phoneNo;
 	private String bloodGroup;
-	private java.sql.Date dob;
+	private java.util.Date dob;
 	private String address;
 	private String district;
 	private String state;
 	private String remarks;
 
 
-	public Patient(int patientId, String patientName, String gender, long phoneNo, String bloodGroup, Date dob, String address,
+	public Patient(int patientId, String patientName, String gender, long phoneNo, String bloodGroup, java.util.Date dob, String address,
 			String district, String state,String remarks) {
 		super();
 		this.setPatientId(patientId);
@@ -45,7 +45,7 @@ public class Patient {
 
 	
 	public Patient(int patientId, String patientName, String gender, long phoneNo, String bloodGroup,
-			java.sql.Date dob, String address, String district, String state) {
+			java.util.Date dob, String address, String district, String state) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.setPatientId(patientId);
@@ -85,11 +85,11 @@ public class Patient {
 	}
 	
 
-	public java.sql.Date getDob(){
+	public java.util.Date getDob(){
 		return dob;
 	}
 
-	public void setDob(java.sql.Date dob){
+	public void setDob(java.util.Date dob){
 		this.dob=dob;
 	}
 

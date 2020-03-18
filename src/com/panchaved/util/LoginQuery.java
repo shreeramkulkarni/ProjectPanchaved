@@ -87,6 +87,17 @@ public class LoginQuery {
 		}
 		return pstm;
 	}
+	public static PreparedStatement deleteQueryLogin() {
+		try {
+			String sql ="DELETE FROM `panchaved_data`.`login` WHERE (`userID` = ?);" ;
+			pstm = con.prepareStatement(sql);
+			
+		}catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		return pstm;
+	}
 	
 	public static PreparedStatement updateQueryLogin() {
 		try {

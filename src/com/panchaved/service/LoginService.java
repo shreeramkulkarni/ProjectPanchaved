@@ -37,6 +37,23 @@ public boolean updateLoginStatus(Login log) {
 	}
 	return false;
 	}
+
+public boolean deleteLogin(long id) {
+	PreparedStatement pstm = LoginQuery.deleteQueryLogin();
+	try {
+		pstm.setLong(1,id);
+	int count = pstm.executeUpdate();
+	if(count!=0) {
+		System.out.println("deletion login query success");
+		return true;
+	}
+	
+	}
+	catch(SQLException e) {
+		e.printStackTrace();
+	}
+	return false;
+	}
 public String getSecurityQuestion(long userID) {
 	
 	ResultSet rs = LoginQuery.getSecurityQQuery(userID);
