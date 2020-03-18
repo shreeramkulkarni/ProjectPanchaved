@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="<c:url value="/assets/css/MUSA_panel-table-1.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/MUSA_panel-table.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/Navigation-Clean.css"/>">
+    <link rel="shortcut icon" href="<c:url value="/assets/img/panchaved-logo.png"/>" type="image/x-icon">
     </head>
     
 </head>

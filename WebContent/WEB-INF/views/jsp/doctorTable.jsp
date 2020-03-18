@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="<c:url value="/assets/css/MUSA_panel-table-1.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/MUSA_panel-table.css"/>">
     <link rel="stylesheet" href="<c:url value="/assets/css/Navigation-Clean.css"/>">
-	
+	<link rel="shortcut icon" href="<c:url value="/assets/img/panchaved-logo.png"/>" type="image/x-icon">
 	<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/assets/bootstrap/js/bootstrap.min.js"/>"></script>
     <script src="<c:url value="/assets/js/chart.min.js"/>"></script>

@@ -28,7 +28,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/assets/css/select2.min.css"/>">
 
-
+<link rel="shortcut icon" href="<c:url value="/assets/img/panchaved-logo.png"/>" type="image/x-icon">
 </head>
 
 </head>

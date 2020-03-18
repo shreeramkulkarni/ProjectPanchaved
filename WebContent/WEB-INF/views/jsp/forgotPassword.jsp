@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<c:url value="assets/css/MUSA_panel-table.css"/>">
     <link rel="stylesheet" href="<c:url value="assets/css/Navigation-Clean.css"/>">
 	<link rel="stylesheet" href="<c:url value="assets/css/animate.min.css"/>">
+	<link rel="shortcut icon" href="<c:url value="/assets/img/panchaved-logo.png"/>" type="image/x-icon">
 </head>
 
 <body class="bg-gradient-primary">
