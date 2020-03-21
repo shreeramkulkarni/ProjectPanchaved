@@ -98,7 +98,7 @@ public class PatientService {
 				String address =rs.getString(7);
 				String district =rs.getString(8);
 				String state = rs.getString(9);
-				Patient patient = new Patient(patientId, patientName, gender, phoneNo, bloodGroup, (java.util.Date) dob, address, district, state);
+				Patient patient = new Patient(patientId, patientName, gender, phoneNo, bloodGroup, (java.sql.Date) dob, address, district, state);
 				patients.add(patient);
 			}
 		} catch (SQLException e) {

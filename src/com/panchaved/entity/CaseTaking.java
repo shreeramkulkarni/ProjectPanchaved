@@ -3,11 +3,14 @@ package com.panchaved.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CaseTaking implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
 	private int patientID;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date date;
 	private String co;
 	private String ho;
