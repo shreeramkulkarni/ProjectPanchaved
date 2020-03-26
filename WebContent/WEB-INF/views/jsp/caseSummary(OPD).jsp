@@ -230,12 +230,24 @@ ${CPS}
 							</div>
 						</div>
 						<div class="col">
+							<p class="m-0 font-weight-bold">Diagnosis<span style="color:red;">*</span></p>
+							<div class="text-left mt-3" style="height: 107px;">
+								<textarea required="" autofocus=""  name="diagnosis" id="diagnosis"
+									class="form-control-lg" style="height: 108px; width: 310px;" ></textarea>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row mt-3">
+						<div class = "col"></div>
+						<div class="col">
 							<p class="m-0 font-weight-bold">Miscellaneous</p>
 							<div class="text-left mt-3" style="height: 107px;">
 								<textarea required="" autofocus=""  name="miscellaneous" id="miscellaneous"
 									class="form-control-lg" style="height: 108px; width: 310px;" ></textarea>
 							</div>
 						</div>
+						<div class = "col"></div>
 					</div>
 					
 				</form>

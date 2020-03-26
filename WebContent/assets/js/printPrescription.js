@@ -21,6 +21,7 @@ $(function(){
 		});
 //		console.log(myPrescription );
 		$("#prescriptionDate").val(myPrescription.prescriptionDate );
+		$("#diagnosis").val(myPrescription.diagnosis);
 		$("#printTreatment").val(myPrescription.treatment );
 		$("#miscellaneous").val(myPrescription.miscellaneous);
 		$("#dietnexercise").val(myPrescription.dietnexercise );

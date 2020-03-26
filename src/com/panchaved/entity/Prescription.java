@@ -32,13 +32,16 @@ public class Prescription implements Serializable {
 	@Column(name = "treatments")
 	private String treatment;
 	
+	@Column(name = "diagnosis")
+	private String diagnosis;
+	
 	@Column(name = "prescriptionDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date prescriptionDate;
 	
 
 	public Prescription(int patientId, int prescriptionId, String prescription, 
-			String dietnexercise, String miscellaneous, String treatment, Date prescriptionDate) {
+			String dietnexercise, String miscellaneous, String treatment,String diagnosis, Date prescriptionDate) {
 		super();
 		this.patientId = patientId;
 		this.prescriptionId = prescriptionId;
@@ -46,6 +49,7 @@ public class Prescription implements Serializable {
 		this.dietnexercise = dietnexercise;
 		this.miscellaneous = miscellaneous;
 		this.treatment = treatment;
+		this.diagnosis = diagnosis;
 		this.prescriptionDate = prescriptionDate;
 	}
 	public Prescription() {
@@ -54,12 +58,13 @@ public class Prescription implements Serializable {
 
 
 	public Prescription(String prescription, String dietnexercise, String miscellaneous,
-			String treatment, Date prescriptionDate) {
+			String treatment,String diagnosis, Date prescriptionDate) {
 		super();
 		this.prescription = prescription;
 		this.dietnexercise = dietnexercise;
 		this.miscellaneous = miscellaneous;
 		this.treatment = treatment;
+		this.diagnosis = diagnosis;
 		this.prescriptionDate = prescriptionDate;
 	}
 
@@ -104,13 +109,19 @@ public class Prescription implements Serializable {
 	public String toString() {
 		return "Prescription [prescription=" + prescription + ", dietnexercise=" + dietnexercise 
 				+ ", miscellaneous=" + miscellaneous + ", treatment=" + treatment
-				+ ", prescriptionDate=" + prescriptionDate + "]";
+				+ ", diagnosis = "+ diagnosis + ", prescriptionDate=" + prescriptionDate + "]";
 	}
 
 	public String getTreatment() {
 		return treatment;
 	}
 
+	public String getDiagnosis() {
+		return diagnosis;
+	}
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
+	}
 	public void setTreatment(String treatment) {
 		this.treatment = treatment;
 	}

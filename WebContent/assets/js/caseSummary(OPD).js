@@ -6,6 +6,7 @@ function displayHistory(history){
 						"Diet And Excercise : "+obj.dietnexercise+"\n" +
 								"Miscellaneous : "+ obj.miscellaneous+"\n" +
 										"Treatment : "+obj.treatment+"\n" +
+												"Diagnosis : "+obj.diagnosis+"\n" +
 												"----------------------------------------------------------------------------------";
 	});
 	$("#history").text(textHistory);
@@ -50,7 +51,9 @@ $("button").click(function(){
 	var dietnexercise = $("#dietnexercise").val();
 	var miscellaneous = $("#miscellaneous").val();
 	var treatment = $("#treatment").text();
-	var prescription = {"prescription" : prescription,"dietnexercise":dietnexercise,"miscellaneous":miscellaneous,"treatment":treatment}; 
+	var diagnosis = $("#diagnosis").val();
+	console.log(diagnosis);
+	var prescription = {"prescription" : prescription,"dietnexercise":dietnexercise,"miscellaneous":miscellaneous,"treatment":treatment,"diagnosis":diagnosis}; 
 	console.log("prescription:"+JSON.stringify(prescription));
 	$("#cpsmap option:selected").each(function(){
 		console.log(this.innerHTML+"\n");
